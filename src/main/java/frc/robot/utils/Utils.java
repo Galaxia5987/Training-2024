@@ -4,6 +4,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 
+
 public class Utils {
     public static final double EPSILON = 1e-9;
 
@@ -46,6 +47,13 @@ public class Utils {
         double[] distances = { 0.0, 10.0, 20.0, 30.0 };
         double[] powers = { 0, 0.2, 0.4, 0.6};
 
+        if (distance > distances[distances.length - 1]){
+            return  powers[powers.length - 1];
+        }
+        else if (distance < 0){
+            return 0;
+        }
+
         int index = 0;
         while (index < distances.length - 1 && distance > distances[index + 1]) {
             index++;
@@ -56,7 +64,10 @@ public class Utils {
         double y1 = powers[index];
         double y2 = powers[index + 1];
 
-        double interpulatedPower = y1 + (distance - x1) * (y2 - y1)/ (x2 - x1);
-        return interpulatedPower;
+        return y1 + (distance - x1) * (y2 - y1) / (x2 - x1);
+    }
+
+    public static double visionDistance() {
+        return 15;
     }
 }
