@@ -41,4 +41,22 @@ public class Utils {
                 epsilonEquals(speeds.vyMetersPerSecond, 0) &&
                 epsilonEquals(speeds.omegaRadiansPerSecond, 0);
     }
+
+    public static double shootPower(double distance){
+        double[] distances = { 0.0, 10.0, 20.0, 30.0 };
+        double[] powers = { 0, 0.2, 0.4, 0.6};
+
+        int index = 0;
+        while (index < distances.length - 1 && distance > distances[index + 1]) {
+            index++;
+        }
+
+        double x1 = distances[index];
+        double x2 = distances[index + 1];
+        double y1 = powers[index];
+        double y2 = powers[index + 1];
+
+        double interpulatedPower = y1 + (distance - x1) * (y2 - y1)/ (x2 - x1);
+        return interpulatedPower;
+    }
 }
