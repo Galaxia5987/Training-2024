@@ -6,6 +6,7 @@ import edu.wpi.first.networktables.IntegerPublisher;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.subsystems.shooter.Shooter;
 import org.photonvision.EstimatedRobotPose;
 import org.photonvision.PhotonCamera;
 
@@ -14,12 +15,13 @@ import java.util.Arrays;
 public class Vision extends SubsystemBase {
     private final PhotonCamera camera;
     private EstimatedRobotPose estimatedRobotPose;
+    private static Vision INSTANCE;
     private final VisionInputsAutoLogged inputs = new VisionInputsAutoLogged();
     private final IntegerPublisher pipelinePub;
 
 
-    private Vision(String cameraName) {
-        camera = new PhotonCamera(cameraName);
+    private Vision() {
+        camera = new PhotonCamera("camera");
         pipelinePub = NetworkTableInstance.getDefault().getIntegerTopic("pipelineIndex").publish();
 
         PortForwarder.add(5800, "photonvision.local", 5800);
@@ -27,8 +29,19 @@ public class Vision extends SubsystemBase {
         PortForwarder.add(1181, "photonvision.local", 1181);
     }
 
+    public static Vision getInstance(){
+        if (INSTANCE == null){
+            INSTANCE = new Vision();
+        }
+        return INSTANCE;
+    }
+
     public boolean hasTarget() {
         return inputs.hasTarget;
+    }
+
+    public double distance(){
+        return inputs.distance;
     }
 
     public double[] getPose3D() {
@@ -50,6 +63,7 @@ public class Vision extends SubsystemBase {
     @Override
     public void periodic() {
         inputs.hasTarget = camera.getLatestResult().hasTargets();
+        inputs.distance = camera.getLatestResult().getBestTarget().getBestCameraToTarget().getTranslation().getNorm();
         inputs.pose3D = new double[]{
                 estimatedRobotPose.estimatedPose.getX(),
                 estimatedRobotPose.estimatedPose.getY(),
