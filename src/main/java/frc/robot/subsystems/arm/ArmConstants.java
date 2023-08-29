@@ -38,6 +38,8 @@ public class ArmConstants {
 
     public static final double ELBOW_ZERO_POSITION = 360 - 53.33; //[degrees]
     public static final double SHOULDER_ZERO_POSITION = 180 - 65.53; //[degrees]
+    public static final double ELBOW_TOP_POSITION = 210; //[degrees]
+    public static final double SHOULDER_TOP_POSITION = 120; //[degrees]
     public static final double END_POSITION_UPPER_Y_LIMIT = 0; //[cm]
     public static final double END_POSITION_LOWER_Y_LIMIT = 0; //[cm]
     public static final double END_POSITION_UPPER_X_LIMIT = 0; //[cm]
