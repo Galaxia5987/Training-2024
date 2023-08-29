@@ -88,8 +88,6 @@ public class Arm extends SubsystemBase {
     public void periodic() {
         inputs.elbowPower = elbowMotor.getMotorOutputPercent();
         inputs.shoulderPower = elbowMotor.getMotorOutputPercent();
-        inputs.elbowPower = elbowMotor.getStatorCurrent();
-        inputs.shoulderPower = shoulderMotor.getStatorCurrent();
         inputs.elbowAngle = elbowTicksToRads.toUnits(elbowMotor.getSelectedSensorPosition());
         inputs.shoulderAngle = shoulderTicksToRads.toUnits(shoulderMotor.getSelectedSensorPosition());
 
