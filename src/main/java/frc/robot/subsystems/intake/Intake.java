@@ -22,9 +22,9 @@ public class Intake extends SubsystemBase {
         ticksToRads = new UnitModel(2048 / Math.PI * 2 / 0.2);
 
         angleMotor.config_kP(0, IntakeConstants.kP, 10);
-        angleMotor.config_kP(0, IntakeConstants.kI, 10);
-        angleMotor.config_kP(0, IntakeConstants.kD, 10);
-        angleMotor.config_kP(0, IntakeConstants.kF, 10);
+        angleMotor.config_kI(0, IntakeConstants.kI, 10);
+        angleMotor.config_kD(0, IntakeConstants.kD, 10);
+        angleMotor.config_kF(0, IntakeConstants.kF, 10);
 
     }
 
@@ -39,7 +39,7 @@ public class Intake extends SubsystemBase {
         return inputs.angle;
     }
 
-    public double getSpinMotoroPower(){
+    public double getSpinMotorPower(){
         return inputs.spinMotorPower;
     }
 
