@@ -11,6 +11,8 @@ public class ArmByPower extends CommandBase {
     private final XboxController controller;
     private final BooleanTrigger elbowHoldTrigger = new BooleanTrigger(false, false);
     private final BooleanTrigger shoulderHoldTrigger = new BooleanTrigger(false, false);
+    private double elbowHold = 0;
+    private double shoulderHold = 0;
 
     public ArmByPower(XboxController controller) {
         this.controller = controller;
@@ -22,10 +24,17 @@ public class ArmByPower extends CommandBase {
         shoulderHoldTrigger.update(Utils.epsilonEquals(controller.getRightY(), 0, 0.1));
 
         if (shoulderHoldTrigger.triggered()) {
-            arm.setShoulderAngle(arm.getShoulderAngle());
+            shoulderHold = arm.getShoulderAngle();
         }
+        if ((Utils.epsilonEquals(controller.getRightY(), 0, 0.1))) {
+            arm.setShoulderAngle(shoulderHold);
+        }
+
         if (elbowHoldTrigger.triggered()) {
-            arm.setElbowAngle(arm.getElbowAngle());
+            elbowHold = arm.getElbowAngle();
+        }
+        if (Utils.epsilonEquals(controller.getRightY(), 0, 0.1)){
+            arm.setElbowAngle(elbowHold);
         }
 
         arm.setElbowPower(-controller.getLeftY());
