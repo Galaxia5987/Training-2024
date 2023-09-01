@@ -82,11 +82,14 @@ public class Arm extends SubsystemBase {
         else if (elbowMode == ControlMode.PercentOutput){
             io.setElbowPower(inputs.elbowPowerSetPoint);
         }
+
         if (shoulderMode == ControlMode.Position) {
             io.setShoulderAngle(inputs.shoulderAngle);
         }
         else if (shoulderMode == ControlMode.PercentOutput){
             io.setShoulderPower(inputs.shoulderPowerSetPoint);
         }
+
+        io.updateInputs(inputs);
     }
 }
