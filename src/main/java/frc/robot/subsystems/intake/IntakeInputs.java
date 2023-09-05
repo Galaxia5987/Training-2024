@@ -9,6 +9,8 @@ public class IntakeInputs {
     public double spinMotorCurrent = 0;
 
     public double angleMotorSetpoint = 0;
+    public double angleMotorWantedPower = 0;
+    public double angleMotorCurrent = 0;
 
     public double spinMotorDesiredPower = 0;
 }
