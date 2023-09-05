@@ -1,4 +1,4 @@
-package frc.robot.subsystems.vision;
-
-public class VisionConstants {
-}
+//package frc.robot.subsystems.vision;
+//
+//public class VisionConstants {
+//}

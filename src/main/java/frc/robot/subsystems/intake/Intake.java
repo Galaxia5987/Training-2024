@@ -14,7 +14,7 @@ public class Intake extends SubsystemBase {
 
     private Intake(){
         if (Robot.isReal()){
-            io = new IntakeIOReal(1, 2);
+            io = new IntakeIOReal(18, 17);
         }
         else{
             io = new IntakeIOSim();
