@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.units.UnitModel;
+import org.littletonrobotics.junction.Logger;
 
 public class Shooter extends SubsystemBase{
 
@@ -63,6 +64,7 @@ public class Shooter extends SubsystemBase{
         inputs.motor2Current = shooterMotor2.getStatorCurrent();
         inputs.motor2BusVoltage = shooterMotor1.getBusVoltage();
         inputs.motor2BusVoltage = shooterMotor2.getBusVoltage();
+        Logger.getInstance().processInputs("Shooter", inputs);
 
         shooterMotor1.set(TalonFXControlMode.Velocity, inputs.desiredMotorVelocity);
     }
