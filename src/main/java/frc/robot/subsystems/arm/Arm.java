@@ -6,6 +6,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 import frc.robot.utils.units.UnitModel;
+import org.littletonrobotics.junction.Logger;
 
 public class Arm extends SubsystemBase {
     private static Arm INSTANCE;
@@ -76,6 +77,9 @@ public class Arm extends SubsystemBase {
 
     @Override
     public void periodic() {
+        io.updateInputs(inputs);
+        Logger.getInstance().processInputs("Arm", inputs);
+
         if (elbowMode == ControlMode.Position) {
             io.setElbowAngle(inputs.elbowAngle);
         }
@@ -90,6 +94,5 @@ public class Arm extends SubsystemBase {
             io.setShoulderPower(inputs.shoulderPowerSetPoint);
         }
 
-        io.updateInputs(inputs);
     }
 }
