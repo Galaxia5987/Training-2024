@@ -16,7 +16,7 @@ public class ArmIOSim implements ArmIO{
         shoulderMotor = new SingleJointedArmSim(DCMotor.getFalcon500(1), IntakeConstants.ANGLE_GEAR_RATIO, 1, 0.5, -Math.PI/3, Math.PI/2, 3, true);
         shoulderFeedback = new PIDController(ArmConstants.shoulderP, ArmConstants.shoulderI, ArmConstants.shoulderD, 0.02);
         elbowMotor = new SingleJointedArmSim(DCMotor.getFalcon500(1), IntakeConstants.ANGLE_GEAR_RATIO, 1, 0.5, -Math.PI/3, Math.PI/2, 3, true);
-        elbowFeedback = new PIDController(ArmConstants.shoulderP, ArmConstants.shoulderI, ArmConstants.shoulderD, 0.02);
+        elbowFeedback = new PIDController(ArmConstants.elbowP, ArmConstants.elbowI, ArmConstants.elbowD, 0.02);
     }
     @Override
     public void updateInputs(ArmInputs inputs) {
