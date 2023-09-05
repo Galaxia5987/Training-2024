@@ -7,6 +7,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.shooter.Shooter;
+import org.littletonrobotics.junction.Logger;
 import org.photonvision.EstimatedRobotPose;
 import org.photonvision.PhotonCamera;
 
@@ -79,5 +80,6 @@ public class Vision extends SubsystemBase {
         };
         inputs.targetArea = camera.getLatestResult().getBestTarget().getArea();
         inputs.latencyMillis = camera.getLatestResult().getLatencyMillis();
+        Logger.getInstance().processInputs("Vision", inputs);
     }
 }
