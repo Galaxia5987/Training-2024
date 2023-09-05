@@ -1,5 +1,6 @@
 package frc.robot.commands.singlesystem;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.arm.Arm;
@@ -16,6 +17,7 @@ public class ArmByPower extends CommandBase {
 
     public ArmByPower(XboxController controller) {
         this.controller = controller;
+        addRequirements(arm);
     }
 
     @Override
@@ -37,7 +39,7 @@ public class ArmByPower extends CommandBase {
             arm.setElbowAngle(elbowHold);
         }
 
-        arm.setElbowPower(-controller.getLeftY());
-        arm.setShoulderPower(-controller.getRightY());
+        arm.setElbowPower(MathUtil.applyDeadband(-controller.getLeftY(), 0.1) );
+        arm.setShoulderPower(MathUtil.applyDeadband(-controller.getRightY(), 0.1));
     }
 }
