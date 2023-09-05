@@ -4,8 +4,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.singlesystem.ArmByPower;
 import frc.robot.commands.singlesystem.IntakePickupCube;
 import frc.robot.commands.singlesystem.ShooterShoot;
+import frc.robot.subsystems.arm.Arm;
 import frc.robot.subsystems.intake.Intake;
 import frc.robot.subsystems.vision.Vision;
 import frc.robot.utils.Utils;
@@ -18,7 +20,9 @@ public class RobotContainer {
     private final JoystickButton rb = new JoystickButton(xboxController, XboxController.Button.kRightBumper.value);
     private final JoystickButton leftTrigger = new JoystickButton(leftJoystick, 1);
 
-    private final Vision vision = Vision.getInstance();
+    private final Arm arm = Arm.getInstance();
+
+//    private final Vision vision = Vision.getInstance();
 
     /**
      * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -37,11 +41,12 @@ public class RobotContainer {
     }
 
     private void configureDefaultCommands() {
+        arm.setDefaultCommand(new ArmByPower(xboxController));
     }
 
     private void configureButtonBindings() {
-        rb.whileTrue(new IntakePickupCube());
-        leftTrigger.whileTrue(new ShooterShoot(() -> Utils.shootPower(vision.distance())));
+
+//        leftTrigger.whileTrue(new ShooterShoot(() -> Utils.shootPower(vision.distance())));
     }
 
 
