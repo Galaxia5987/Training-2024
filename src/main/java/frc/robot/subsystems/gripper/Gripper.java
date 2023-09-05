@@ -3,6 +3,7 @@ package frc.robot.subsystems.gripper;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import org.littletonrobotics.junction.Logger;
 
 public class Gripper extends SubsystemBase {
     private final Solenoid solenoid;
@@ -29,5 +30,6 @@ public class Gripper extends SubsystemBase {
     public void periodic() {
         inputs.isOpen = solenoid.get();
         solenoid.set(inputs.wantedState);
+        Logger.getInstance().processInputs("Gripper", inputs);
     }
 }
