@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.shooter.Shooter;
 import frc.robot.subsystems.shooter.ShooterConstants;
 import frc.robot.utils.units.UnitModel;
+import org.littletonrobotics.junction.Logger;
 
 public class Turret extends SubsystemBase {
     private final TalonSRX turretMotor;
@@ -53,6 +54,7 @@ public class Turret extends SubsystemBase {
         inputs.turretAngle = ticksToRads.toUnits(turretMotor.getSelectedSensorPosition());
         inputs.turretPower = turretMotor.getMotorOutputPercent();
         inputs.turretCurrent = turretMotor.getStatorCurrent();
+        Logger.getInstance().processInputs("Turret", inputs);
 
         turretMotor.set(turretMode, (turretMode == ControlMode.Position) ? inputs.turretAngleSetPoint : inputs.turretPowerSetPoint);
     }
