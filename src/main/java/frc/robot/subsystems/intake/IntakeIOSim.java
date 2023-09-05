@@ -38,4 +38,13 @@ public class IntakeIOSim implements IntakeIO{
         angleMotor.setInputVoltage(angleMotorAppliedVoltage);
     }
 
+    @Override
+    public void resetIntake() {
+//        angleMotor.setState();
+    }
+
+    @Override
+    public void setAngleMotorPower(double power) {
+        angleMotor.setInputVoltage(power * 12);
+    }
 }
