@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 import frc.robot.utils.units.UnitModel;
+import org.littletonrobotics.junction.Logger;
 
 public class Intake extends SubsystemBase {
     private final IntakeIO io;
@@ -52,6 +53,8 @@ public class Intake extends SubsystemBase {
     @Override
     public void periodic() {
         io.updateInputs(inputs);
+        Logger.getInstance().processInputs("Intake", inputs);
+
 
         io.setAngleMotorAngle(inputs.angleMotorSetpoint);
         io.setSpinMotorPower(inputs.spinMotorDesiredPower);
