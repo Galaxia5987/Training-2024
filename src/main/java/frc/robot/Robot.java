@@ -8,6 +8,7 @@ import edu.wpi.first.hal.DriverStationJNI;
 import edu.wpi.first.hal.simulation.RoboRioDataJNI;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -44,7 +45,7 @@ public class Robot extends LoggedRobot {
         autonomousCommand = robotContainer.getAutonomousCommand();
 
         Logger.getInstance().recordMetadata("ProjectName", "Wcp-Swerve-2023"); // Set a metadata value
-
+        autonomousExit();
         if (isReal()) {
             Logger.getInstance().addDataReceiver(new NT4Publisher()); // Publish data to NetworkTables
             new PowerDistribution(1, PowerDistribution.ModuleType.kRev); // Enables power distribution logging

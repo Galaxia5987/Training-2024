@@ -2,6 +2,7 @@ package frc.robot.subsystems.arm;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
@@ -71,8 +72,8 @@ public class Arm extends SubsystemBase {
 
     public void setArmPosition(double x, double y) {
         var solution = armKinematics.inverseKinematics(new Translation2d(x, y));
-        setShoulderAngle(solution.shoulderAngle);
-        setElbowAngle(solution.elbowAngle);
+        setShoulderAngle(MathUtil.angleModulus(solution.shoulderAngle));
+        setElbowAngle(MathUtil.angleModulus(solution.elbowAngle));
     }
 
     @Override
@@ -81,14 +82,14 @@ public class Arm extends SubsystemBase {
         Logger.getInstance().processInputs("Arm", inputs);
 
         if (elbowMode == ControlMode.Position) {
-            io.setElbowAngle(inputs.elbowAngle);
+            io.setElbowAngle(inputs.elbowAngleSetPoint);
         }
         else if (elbowMode == ControlMode.PercentOutput){
             io.setElbowPower(inputs.elbowPowerSetPoint);
         }
 
         if (shoulderMode == ControlMode.Position) {
-            io.setShoulderAngle(inputs.shoulderAngle);
+            io.setShoulderAngle(inputs.shoulderAngleSetPoint);
         }
         else if (shoulderMode == ControlMode.PercentOutput){
             io.setShoulderPower(inputs.shoulderPowerSetPoint);

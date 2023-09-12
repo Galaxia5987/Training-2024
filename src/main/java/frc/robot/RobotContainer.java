@@ -33,10 +33,10 @@ public class RobotContainer {
     }
 
     private void configureDefaultCommands() {
+//        arm.setDefaultCommand(new ArmByPower(xboxController));
     }
 
     private void configureButtonBindings() {
-//        arm.setDefaultCommand(new ArmByPower(xboxController));
         rb.whileTrue(new ArmByPosition(-1, 0));
         lb.whileTrue(new ArmByPosition(-0.5, 1));
     }

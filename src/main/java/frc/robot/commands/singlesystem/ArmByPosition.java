@@ -15,6 +15,5 @@ public class ArmByPosition extends CommandBase {
     @Override
     public void execute() {
         arm.setArmPosition(x, y);
-        System.out.println("fuck");
     }
 }
