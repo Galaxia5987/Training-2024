@@ -34,18 +34,18 @@ public class Arm extends SubsystemBase {
     }
 
     public void setShoulderAngle(double angle) {
-        inputs.shoulderAngleSetPoint = angle;
         shoulderMode = ControlMode.Position;
+        inputs.shoulderAngleSetPoint = angle;
     }
 
     public void setElbowAngle(double angle) {
-        inputs.elbowAngleSetPoint = angle;
         elbowMode = ControlMode.Position;
+        inputs.elbowAngleSetPoint = angle;
     }
 
     public void setShoulderPower(double power) {
-        inputs.shoulderPowerSetPoint = power;
         shoulderMode = ControlMode.PercentOutput;
+        inputs.shoulderPowerSetPoint = power;
     }
 
     public void setElbowPower(double power) {

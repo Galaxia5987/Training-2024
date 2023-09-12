@@ -32,22 +32,22 @@ public class ArmIOSim implements ArmIO{
     @Override
     public void setShoulderAngle(double angle) {
         double shoulderMotorAppliedVoltage = shoulderFeedback.calculate(shoulderMotor.getAngleRads(), angle);
-        shoulderMotor.setInputVoltage(shoulderMotorAppliedVoltage);
+        setShoulderPower(shoulderMotorAppliedVoltage);
     }
 
     @Override
     public void setElbowAngle(double angle) {
         double elbowMotorAppliedVoltage = elbowFeedback.calculate(elbowMotor.getAngleRads(), angle);
-        elbowMotor.setInputVoltage(elbowMotorAppliedVoltage);
+        setElbowPower(elbowMotorAppliedVoltage);
     }
 
     @Override
     public void setShoulderPower(double power) {
-        shoulderMotor.setInputVoltage(power * 12);
+        shoulderMotor.setInputVoltage(power * 12 * 0.3);
     }
 
     @Override
     public void setElbowPower(double power) {
-        elbowMotor.setInputVoltage(power * 12);
+        elbowMotor.setInputVoltage(power * 12 * 0.3);
     }
 }
