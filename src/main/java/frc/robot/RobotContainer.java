@@ -37,8 +37,8 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        rb.whileTrue(new ArmByPosition(-1, 0));
-        lb.whileTrue(new ArmByPosition(-0.5, 1));
+        rb.whileTrue(new ArmByPosition(0.2, 0.775));
+        lb.whileTrue(new ArmByPosition(-0.4, 0.06));
     }
 
 
