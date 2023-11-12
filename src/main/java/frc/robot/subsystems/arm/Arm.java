@@ -28,7 +28,7 @@ public class Arm extends SubsystemBase {
     private ControlMode elbowMode;
 
     Mechanism2d mech = new Mechanism2d(3, 3);
-    MechanismRoot2d root = mech.getRoot("Arm", 2, 1);
+    MechanismRoot2d root = mech.getRoot("Arm", 1, 1);
     MechanismLigament2d shoulder = root.append(new MechanismLigament2d("shoulder", ArmConstants.SHOULDER_LENGTH, 90));
 
     MechanismLigament2d elbow = shoulder.append(new MechanismLigament2d("elbow", ArmConstants.ELBOW_LENGTH, 45, 10, new Color8Bit(Color.kPurple)));
@@ -88,8 +88,8 @@ public class Arm extends SubsystemBase {
 
     public void setArmPosition(double x, double y) {
         var solution = armKinematics.inverseKinematics(new Translation2d(x, y));
-        setShoulderAngle(MathUtil.angleModulus(solution.shoulderAngle));
-        setElbowAngle(MathUtil.angleModulus(solution.elbowAngle));
+        setShoulderAngle(solution.shoulderAngle);
+        setElbowAngle(solution.elbowAngle);
     }
 
     @Override
