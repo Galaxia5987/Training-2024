@@ -1,17 +1,18 @@
 package frc.robot;
-
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.intake.Intake;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.singlesystem.ArmByPosition;
+import frc.robot.subsystems.arm.Arm;
+import frc.robot.commands.singlesystem.ArmByPower;
 
 public class RobotContainer {
     private static RobotContainer INSTANCE = null;
     private final XboxController xboxController = new XboxController(0);
-//    private final JoystickButton rb = new JoystickButton(xboxController, XboxController.Button.kRightBumper.value);
-//    private final JoystickButton lb = new JoystickButton(xboxController, XboxController.Button.kLeftBumper.value);
+    private final JoystickButton rb = new JoystickButton(xboxController, XboxController.Button.kRightBumper.value);
+    private final JoystickButton lb = new JoystickButton(xboxController, XboxController.Button.kLeftBumper.value);
 
-    private final Intake intake = Intake.getInstance();
+    private final Arm arm = Arm.getInstance();
 
 //    private final Vision vision = Vision.getInstance();
 
@@ -32,11 +33,12 @@ public class RobotContainer {
     }
 
     private void configureDefaultCommands() {
+//        arm.setDefaultCommand(new ArmByPower(xboxController));
     }
 
     private void configureButtonBindings() {
-//        rb.whileTrue(new IntakePickupCube());
-//        lb.whileTrue(new ResetIntake());
+        rb.whileTrue(new ArmByPosition(0.2, 0.775));
+        lb.whileTrue(new ArmByPosition(-0.4, 0.06));
     }
 
 

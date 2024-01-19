@@ -109,7 +109,7 @@ public class ArmKinematics {
 
         public InverseKinematicsSolution(double shoulderAngle, double elbowAngle) {
             this.shoulderAngle = AngleUtil.normalize(shoulderAngle);
-            this.elbowAngle = AngleUtil.normalize(shoulderAngle);
+            this.elbowAngle = AngleUtil.normalize(elbowAngle);
         }
     }
 }

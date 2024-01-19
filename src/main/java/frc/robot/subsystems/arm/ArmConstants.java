@@ -13,10 +13,10 @@ public class ArmConstants {
     public static final double SHOULDER_TOP_POSITION = 120; //[degrees]
 
     //PID
-    public static final double shoulderP = 0.1;
+    public static final double shoulderP = 2.55;
     public static final double shoulderI = 0;
-    public static final double shoulderD = 0;
-    public static final double elbowP = 0;
+    public static final double shoulderD = 0.1;
+    public static final double elbowP = 5.0;
     public static final double elbowI = 0.0;
-    public static final double elbowD = 0.0;
+    public static final double elbowD = 0;
 }
